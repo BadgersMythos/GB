@@ -17,15 +17,15 @@ const run = () => {
 
 const getTimezonedhour = () => {
   const machineHour = momentTz.tz(momentTz.tz.guess()).hour();
-  const BSTHour = momentTz.tz('Europe/London').hour();
-  return 7 + (machineHour - BSTHour);
+  const GMTHour = momentTz.tz('Europe/London').hour();
+  return 10 + (machineHour - GMTHour);
 };
 
-const finalCron = CRON || `2 ${getTimezonedhour()} * * *`;
+const finalCron = CRON || `15 ${getTimezonedhour()} * * *`;
 
 log(`Running scheduler with Cron: ${finalCron}`);
 
 /**
- * Run everyday at 7am, BST time
+ * Run everyday at 7am, GMT time
  */
 cron.schedule(finalCron, run);
