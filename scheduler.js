@@ -18,10 +18,10 @@ const run = () => {
 const getTimezonedhour = () => {
   const machineHour = momentTz.tz(momentTz.tz.guess()).hour();
   const GMTHour = momentTz.tz('Europe/London').hour();
-  return 10 + (machineHour - GMTHour);
+  return 7 + (machineHour - GMTHour);
 };
 
-const finalCron = CRON || `15 ${getTimezonedhour()} * * *`;
+const finalCron = CRON || `0 ${getTimezonedhour()} * * *`;
 
 log(`Running scheduler with Cron: ${finalCron}`);
 
